@@ -1,3 +1,9 @@
 # pip install -r requirements.txt
 flask
 simplejson
+numpy
+pandas
+keras
+tensorflow
+path
+json
