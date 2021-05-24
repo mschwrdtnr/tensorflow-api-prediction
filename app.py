@@ -5,9 +5,9 @@ import keras
 import pandas as pd
 import numpy as np
 
-# Environment variables
+## Environment variables
 MODEL_DIR= "ml_model"
-WEIGHTS_PATH = MODEL_DIR + "/simpleModelCheckpoint.h5"
+#WEIGHTS_PATH = MODEL_DIR + "/simpleModelCheckpoint.h5"
 
 # Load Keras Model
 print("Loading keras model..")
@@ -88,4 +88,4 @@ def denormalize(value):
 
 if __name__ == "__main__":
     # run flask application in debug mode
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5000)

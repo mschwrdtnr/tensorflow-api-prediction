@@ -1,8 +1,13 @@
 # tensorflow-api-prediction
 
 ## Usage
+### Python Script
 1. `pip install -r requirements.txt`
 2. `python app.py`
+
+### Docker Compose
+1. `docker-compose build`
+2. `docker-compose up`
 
 ## Used Tutorials
 - https://ernest-bonat.medium.com/using-c-to-call-python-restful-api-web-services-with-machine-learning-models-6d1af4b7787e
