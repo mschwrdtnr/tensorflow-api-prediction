@@ -17,10 +17,12 @@ model = keras.models.load_model(
 # model.load_weigths(WEIGHTS_PATH)
 
 # mean and std of the initial training-dataset
-mean = [8.37481997e+01, 7.05578991e+08, 4.91064283e+00, 9.55590061e+00,
-        2.21342780e+02, 2.19309017e+01, 4.38618034e+00, 2.93333980e+03]
-std = [2.17652897e+01, 1.83131771e+08, 2.05374632e+00, 2.55284913e+00,
-       8.77761346e+01, 8.74079681e+00, 1.74815936e+00, 1.38030854e+03]
+mean = [-1.75083294e+03,  2.00750551e+02,  1.66239649e+09,  1.19796115e+01,
+        1.91216897e+00,  4.49067901e+00,  9.55689590e+00,  2.18859067e+02,
+        2.18968203e+01,  4.37936406e+00,  2.73739641e+03]
+std = [1.83037727e+02, 9.15228348e+01, 7.60116407e+08, 3.36948488e+00,
+       1.38422981e+00, 1.60899072e+00, 2.72736533e+00, 7.63923341e+01,
+       7.56692744e+00, 1.51338549e+00, 1.01327208e+03]
 
 
 def normalizeTrainingData(data):
@@ -29,10 +31,11 @@ def normalizeTrainingData(data):
 
 valDataCSV = pd.read_csv('data/train.csv', ',')
 
-titles = ['Assembly',
+titles = ['Lateness',
+          'Assembly',
           'Material',
-          #           'OpenOrders',
-          #           'NewOrders',
+          'OpenOrders',
+          'NewOrders',
           'TotalWork',
           'TotalSetup',
           'SumDuration',
@@ -48,9 +51,6 @@ valFeatures = normalizeTrainingData(features.values)
 valFeatures = pd.DataFrame(valFeatures)
 x_val = valFeatures[[i for i in range(len(titles) - 1)]].values
 y_val = valFeatures.iloc[:][[len(titles)-1]].values
-
-print("x_val", x_val)
-print("y_val", y_val)
 
 # Initialize flask application
 app = Flask(__name__)
@@ -70,8 +70,11 @@ def predict_cycle_time():
         # features = np.array(list(map(float, features.split(','))))
 
         # extract vars of send json
+        Lateness = sended_data['Lateness']
         Assembly = sended_data['Assembly']
         Material = sended_data['Material']
+        OpenOrders = sended_data['OpenOrders']
+        NewOrders = sended_data['NewOrders']
         TotalWork = sended_data['TotalWork']
         TotalSetup = sended_data['TotalSetup']
         SumDuration = sended_data['SumDuration']
@@ -81,13 +84,13 @@ def predict_cycle_time():
 
         # create feature numpy array
         features = np.array(
-            [[[Assembly, Material, TotalWork, TotalSetup, SumDuration, SumOperations, ProductionOrders]]])
+            [[[Lateness, Assembly, Material, OpenOrders, NewOrders, TotalWork, TotalSetup, SumDuration, SumOperations, ProductionOrders]]])
         # print(features)
 
         # normalize features
         normalized_features = normalize(features)
         # print(normalized_features)
-
+        print("normalized", normalized_features)
         # predict cycletime with given model
         predicted_cycletime = model.predict(normalized_features)
 
