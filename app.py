@@ -7,14 +7,14 @@ import numpy as np
 
 # Environment variables
 MODEL_DIR = "ml_model"
-#WEIGHTS_PATH = MODEL_DIR + "/simpleModelCheckpoint.h5"
+WEIGHTS_PATH = MODEL_DIR + "/simpleModelCheckpoint.h5"
 
 # Load Keras Model
 print("Loading keras model..")
 model = keras.models.load_model(
     MODEL_DIR, custom_objects=None, compile=True, options=None
 )
-# model.load_weigths(WEIGHTS_PATH)
+model.load_weights(WEIGHTS_PATH)
 
 # mean and std of the initial training-dataset
 mean = [-1.75083294e+03,  2.00750551e+02,  1.66239649e+09,  1.19796115e+01,
@@ -94,9 +94,10 @@ def predict_cycle_time():
         # predict cycletime with given model
         predicted_cycletime = model.predict(normalized_features)
 
+        print("predicted normalized", predicted_cycletime)
         # denormalize
         predicted_cycletime = denormalize(predicted_cycletime)
-        print(predicted_cycletime)
+        print("predicted denormalized", predicted_cycletime)
 
         # create json response object
         response_json = {'CycleTime': json.dumps(
