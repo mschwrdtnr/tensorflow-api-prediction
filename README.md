@@ -6,16 +6,16 @@ With this project you can setup a container launching a REST API to call predict
 This repository is structured as follows:
 ```md
 tensorflow-rest-prediction
-|	README.md
-|	app.py			                # Launch file of the python programming 
-|	docker-compose.yml				  # Descriptions for launching the docker container
-|   Dockerfile                # Descriptions for launching the docker container
-|	CSharpPythonRESTfulAPI.cs		# File for REST Message to predict with container
-|   requirements.txt          # Python dependencies which are automated installed while building the container
-|-- Data							        # Folder for train and validation data
-|-- python_scripts					  # Old python scripts for training and prediction
-|-- Notebooks						      # Old notebooks for training and prediction
-|-- ml_model						      # Place of all necessary data of the trained model
+| README.md
+| app.py                      # Launch file of the python programming 
+| docker-compose.yml          # Descriptions for launching the docker container
+| Dockerfile                  # Descriptions for launching the docker container
+| CSharpPythonRESTfulAPI.cs   # File for REST Message to predict with container
+| requirements.txt            # Python dependencies which are automated installed while building the container
+|-- Data                      # Folder for train and validation data
+|-- python_scripts            # Old python scripts for training and prediction
+|-- Notebooks	              # Old notebooks for training and prediction
+|-- ml_model                  # Place of all necessary data of the trained model
 ```
 
 ## Usage
