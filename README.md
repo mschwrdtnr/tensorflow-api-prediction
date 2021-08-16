@@ -33,6 +33,13 @@ tensorflow-rest-prediction
 ## Explanation of the python code
 @MaxWeickert
 
+## How to change something for own purpose
+- Use other variables for prediction?
+@MaxWeickert
+
+## Train a new Model
+@MaxWeickert
+
 ## Testing
 ### Test the prediction
 You can test the api with curl as follows:
