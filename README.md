@@ -30,10 +30,24 @@ tensorflow-rest-prediction
 
 > Make sure that Python 3 is installed.
 
+## Explanation of the python code
+@MaxWeickert
 
-## Test the prediction
+## Testing
+### Test the prediction
 You can test the api with curl as follows:
-`curl -X POST -H 'Content-Type:application/json' http://localhost:5000/predict/cycletime.json -d '{"Lateness":-1690,"Assembly":19.841,"Material":187106750,"OpenOrders":11,"NewOrders":1,"TotalWork":3.9,"TotalSetup":9.03,"SumDuration":158,"SumOperations":15,"ProductionOrders":3}'`
+```
+curl -X POST -H 'Content-Type:application/json' http://localhost:5000/predict/cycletime.json -d '{"Lateness":-1690,"Assembly":19.841,"Material":187106750,"OpenOrders":11,"NewOrders":1,"TotalWork":3.9,"TotalSetup":9.03,"SumDuration":158,"SumOperations":15,"ProductionOrders":3}'
+```
+
+You should get the following answer:
+```
+{
+  "CycleTime": "1936.75146484375"
+}
+```
+### Test the status of the prediction
+`curl http://localhost:5000/health`
 
 
 ## Used Tutorials
